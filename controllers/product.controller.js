@@ -1,5 +1,4 @@
-const productModule = require("../modules/product.module");
-const { push } = require("../routs/Route");
+const productModule = require("../modules/produt.module");
 
 const createProduct = (req, res) => {
   const { name, categories, wight } = req.body;

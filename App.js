@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const StudentModule = require('./modules/student.module');
-const Route = require("./routs/Route");
-app.use('/', Route);
-
-
+const Routs = require("./Api/Routs");
+// const Route = require("./routs/Rout");
 const app = express();
+app.use('/', Routs);
+
 app.use(express.json());
 
 app.get("/app", (req, res) => {
