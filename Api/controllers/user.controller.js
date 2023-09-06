@@ -1,6 +1,5 @@
 const { default: mongoose } = require("mongoose");
 const mongodb = require("mongodb");
-const bcrypt = require("bcryptjs");
 const userModule = require("../modules/user.module");
 
 
