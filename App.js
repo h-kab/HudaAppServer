@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const StudentModule = require('./modules/student.module');
-const Routs = require("./Api/Routs");
-// const Route = require("./routs/Rout");
+const userModule = require("./Api/modules/user.module");
+const Routs = require("./Api/routs/Routs");
 const app = express();
 app.use('/', Routs);
 
@@ -15,21 +14,22 @@ app.get("/app", (req, res) => {
     })
 
 })
-// StudentMudle in DB
+// UserModule in DB 
 
 
 
-app.post("/creatNewStudent", (req, res) => {
-    StudentModule.create({
-        name: req.body.name,
-        id: req.body.id,
+// app.post("/creatNewUser", (req, res) => {
+//     userModule.create({
+//         email: req.body.email,
+//         password: req.body.password,
+        
 
-    }).then((response) => {
-        res.status(200).json({
-            message: "student added",
-        });
-    });
-});
+//     }).then((response) => {
+//         res.status(200).json({
+//             message: "user added",
+//         });
+//     });
+// });
 
 // app.post("/creatNewStudent",  CONTROLER => (req, res) => {
 //     StudentModule.create({
@@ -43,9 +43,8 @@ app.post("/creatNewStudent", (req, res) => {
 //     });
 // });
 
-
-app.post('/getallStudents', (req, res) => {
-    StudentModule.find()
+app.post('/getallUsers', (req, res) => {
+    userModule.find()
         .then((stRes) => {
             console.log("");
             res.status(200).json({
@@ -54,7 +53,7 @@ app.post('/getallStudents', (req, res) => {
             });
         })
         .catch((e) => {
-            console.log("get all students error: ", e);
+            console.log("get all users error:", e);
             res.status(500).json({ error: true, errorMessage: e })
         });
 })
