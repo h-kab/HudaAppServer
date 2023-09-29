@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
+  id:String,
   name: String,
-  categories: { type: [String], default: ["general"] },
-  wight: Number,
+  price: Number,
+  img:String,
+  // categories: { type: [String], default: ["general"] },
 });
 
 const productModule = 

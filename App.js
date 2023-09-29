@@ -2,10 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userModule = require("./Api/modules/user.module");
 const Routs = require("./Api/routs/Routs");
+const { productData } = require("./data");
+const { createProduct } = require("./Api/controllers/product.controller");
 const app = express();
-app.use('/', Routs);
 
 app.use(express.json());
+
+app.use('/', Routs);
+
 
 app.get("/app", (req, res) => {
     res.status(200).json({
@@ -57,6 +61,16 @@ app.post('/getallUsers', (req, res) => {
             res.status(500).json({ error: true, errorMessage: e })
         });
 })
+
+// productData.forEach((item)=>{
+//     createProduct({
+//         body:{
+//         id:item.id,
+//         name:item.name,
+//         img:item.img,
+//         price:item.price,
+//     }})
+// })
 
 
 const mongooseLink = 'mongodb+srv://hudakabha093:hudasqlkabha4@cluster0.bwsjuef.mongodb.net/'

@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const userModule = require("../modules/user.module");
 
 
-const  Login =  (req, res) => {
+const Login = (req, res) => {
     try {
         const { email, password } = req.body;
         if (!(email && password)) {
@@ -14,13 +14,15 @@ const  Login =  (req, res) => {
     } catch (e) {
         console.log(e);
     }
-}
+}//login
 
 
-const signUp =  async (req, res) => {
+const signUp = async (req, res) => {
+    console.log(req);
+    const { email, password } = req.body || {};
+
     try {
         // Get user input
-        const { email, password } = req.body;
 
         // Validate user input
         if (!(email && password)) {
@@ -37,7 +39,6 @@ const signUp =  async (req, res) => {
                 .json({ message: "User Already Exist. Please Login" });
         }
         //Encrypt user password
-``
         // Create user in our database
         const user = await userModule.create({
             email: email.toLowerCase(), // sanitize: convert email to lowercase
@@ -47,15 +48,15 @@ const signUp =  async (req, res) => {
         res.status(200).json({ user: user });
     } catch (err) {
         console.log(err);
-    
-}
+
+    }
 }
 
 
 module.exports = {
-    Login , 
-    signUp
+    Login,
+    signUp,
 }
-   
+
 
 

@@ -1,37 +1,46 @@
 const productModule = require("../modules/produt.module");
 
 const createProduct = (req, res) => {
-  const { name, categories, wight } = req.body;
+  // console.log(req.body);
+  const { name,id , price, img} = req.body || {};
   //other way to write the up code:
   // const name = req.body.name
   // categories = req.body.categories
   // wight = req.body.wight
-
-  productModule
+  try{
+    productModule
     .create({
       name,
       // name: name
-      categories,
-      wight,
+      id,
+      price,
+      img,
     })
     .then((p) => {
-      res.status(200).json({ message: "Done", product: p });
-    });
+      res?.status(200).json({ message: "Done", product: p });
+    }).catch((e)=>{
+      res?.status(200).json({ message: "e",});
+    })
+  }
+  catch (e) {
+    res?.status(404).json({ message: "e",});
+  }
+  
 };
 
-const getProductCategories = async (req, res) => {
-  const allProducts = await productModule.find();
+// const getProductCategories = async (req, res) => {
+//   const allProducts = await productModule.find();
 
-  var categories = [];
-  allProducts.forEach((product) => {
-    categories.push(...product.categories);
-  });
+//   var categories = [];
+//   allProducts.forEach((product) => {
+//     categories.push(...product.categories);
+//   });
 
-  const categirySet = new Set(categories);
-  categories = Array.from(categirySet);
+//   const categirySet = new Set(categories);
+//   categories = Array.from(categirySet);
 
-  res.status(200).json(categories);
-};
+//   res.status(200).json(categories);
+// };
 
 const deleteProducte = (req , res) => {
     productModule.deleteOne({name:req.body.name})
@@ -42,6 +51,6 @@ const deleteProducte = (req , res) => {
 
 module.exports = {
   createProduct,
-  getProductCategories,
+  // getProductCategories,
   deleteProducte
 };
