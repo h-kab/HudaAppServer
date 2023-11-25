@@ -15,13 +15,13 @@ const Login = async (req, res) => {
         console.log(usre);
 
         if (!(email && password)) {
-           return res.status(500).send("incorrect inputs")
+           return res.status(500).send("missing inputs")
         }
 
         if (usre) {
             res.status(200).json({ message: " welcom :)" });
         }else{
-        res.status(200).json({ message: "incorrect" });
+        res.status(200).json({ message: "incorrect inputs " });
 
         }
 
@@ -50,7 +50,7 @@ const signUp = async (req, res) => {
         if (oldUser) {
             return res
                 .status(207)
-                .json({ message: "User Already Exist. Please Login" });
+                .json({ message: "User Already Exist. Please Login Again" });
         }
         //Encrypt user password
         // Create user in our database
