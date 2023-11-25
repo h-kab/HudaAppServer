@@ -3,23 +3,37 @@ const mongodb = require("mongodb");
 const userModule = require("../modules/user.module");
 
 
-const Login = (req, res) => {
+const Login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        const mail=email.toLowerCase()
+
+        //userModule.findOne({ email:email }).then((item)=>{
+        //     console.log("item",item);
+        // })
+        const usre = await userModule.findOne({ email:mail, password });
+        console.log(usre);
+
         if (!(email && password)) {
            return res.status(500).send("incorrect inputs")
         }
 
-        res.status(200).json({ message: " welcom :)" });
+        if (usre) {
+            res.status(200).json({ message: " welcom :)" });
+        }else{
+        res.status(200).json({ message: "incorrect" });
+
+        }
+
     } catch (e) {
         console.log(e);
     }
 }//login
 
-
 const signUp = async (req, res) => {
     console.log(req);
     const { email, password } = req.body || {};
+    const mail=email.toLowerCase()
 
     try {
         // Get user input
@@ -29,9 +43,9 @@ const signUp = async (req, res) => {
             res.status(408).json({ message: "All input is required" });
             return
         }
-        // check if user already exist
+        // check if user already exis
         // Validate if user exist in our database
-        const oldUser = await userModule.findOne({ email });
+        const oldUser = await userModule.findOne({ email:mail });s
 
         if (oldUser) {
             return res
@@ -41,7 +55,7 @@ const signUp = async (req, res) => {
         //Encrypt user password
         // Create user in our database
         const user = await userModule.create({
-            email: email.toLowerCase(), // sanitize: convert email to lowercase
+            email: email, // sanitize: convert email to lowercase
             password: password,
         });
         // return new user
