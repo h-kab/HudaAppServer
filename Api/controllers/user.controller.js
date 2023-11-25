@@ -7,7 +7,7 @@ const Login = (req, res) => {
     try {
         const { email, password } = req.body;
         if (!(email && password)) {
-            res.status(500).send("incorrect inputs")
+           return res.status(500).send("incorrect inputs")
         }
 
         res.status(200).json({ message: " welcom :)" });
