@@ -50,7 +50,7 @@ const signUp = async (req, res) => {
         if (oldUser) {
             return res
                 .status(207)
-                .json({ message: "User Already Exist. Please Login Again" });
+                .json({ message: "User Already Exist. Please try Again" });
         }
         //Encrypt user password
         // Create user in our database
