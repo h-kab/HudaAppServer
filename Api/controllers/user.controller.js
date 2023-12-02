@@ -2,32 +2,28 @@ const { default: mongoose } = require("mongoose");
 const mongodb = require("mongodb");
 const userModule = require("../modules/user.module");
 
-const ins= navigation.navigate('Login');
-const outs= (!navigation.navigate('Login'));
 
 const Login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const mail=email.toLowerCase()
+        const mail = email.toLowerCase()
 
         //userModule.findOne({ email:email }).then((item)=>{
         //     console.log("item",item);
         // })
-        const usre = await userModule.findOne({ email:mail, password });
+        const usre = await userModule.findOne({ email: mail, password });
         console.log(usre);
 
         if (!(email && password)) {
-           return res.status(404).send("incorrect inputs")
-        
+            return res.status(404).send("incorrect inputs")
+
         }
-        outs
 
         if (usre) {
             res.status(200).json({ message: " welcom :)" });
-            ins
-        }else{
-        res.status(404).json({ message: "incorrect" });
-        outs        }
+        } else {
+            res.status(404).json({ message: "incorrect" });
+          }
 
     } catch (e) {
         console.log(e);
@@ -41,7 +37,7 @@ const Login = async (req, res) => {
 const signUp = async (req, res) => {
     console.log(req);
     const { email, password } = req.body || {};
-    const mail=email.toLowerCase()
+    const mail = email.toLowerCase()
 
     try {
         // Get user input
@@ -53,7 +49,7 @@ const signUp = async (req, res) => {
         }
         // check if user already exist
         // Validate if user exist in our database
-        const oldUser = await userModule.findOne({ email:mail });
+        const oldUser = await userModule.findOne({ email: mail });
 
         if (oldUser) {
             return res
