@@ -13,7 +13,7 @@ const Login = async (req, res) => {
         // })
 
         if (!(email && password)) {
-            res.status(404).send("incorrect inputs")
+            res.status(404).json({message: "incorrect inputs"})
             return;
         }
 
