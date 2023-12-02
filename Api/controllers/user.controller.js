@@ -11,19 +11,21 @@ const Login = async (req, res) => {
         //userModule.findOne({ email:email }).then((item)=>{
         //     console.log("item",item);
         // })
+
+        if (!(email && password)) {
+            res.status(404).send("incorrect inputs")
+            return;
+        }
+
         const usre = await userModule.findOne({ email: mail, password });
         console.log(usre);
 
-        if (!(email && password)) {
-            return res.status(404).send("incorrect inputs")
-
-        }
 
         if (usre) {
             res.status(200).json({ message: " welcom :)" });
         } else {
             res.status(404).json({ message: "incorrect" });
-          }
+        }
 
     } catch (e) {
         console.log(e);
