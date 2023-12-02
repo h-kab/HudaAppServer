@@ -17,7 +17,7 @@ const Login = async (req, res) => {
 
 
         if (usre) {
-            res.status(200).json({ message: " welcome :)" });
+            res.status(200).json({ message: "welcome :)" });
         } else {
             res.status(404).json({ message: "incorrect" });
         }
