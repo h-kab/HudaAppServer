@@ -7,13 +7,8 @@ const Login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const mail = email?.toLowerCase()
-
-        //userModule.findOne({ email:email }).then((item)=>{
-        //     console.log("item",item);
-        // })
-
         if (!(email && password)) {
-            res.status(404).json({message: "incorrect inputs"})
+            res.status(404).json({ message: "incorrect inputs" })
             return;
         }
 
@@ -22,7 +17,7 @@ const Login = async (req, res) => {
 
 
         if (usre) {
-            res.status(200).json({ message: " welcom :)" });
+            res.status(200).json({ message: " welcome :)" });
         } else {
             res.status(404).json({ message: "incorrect" });
         }
@@ -46,7 +41,7 @@ const signUp = async (req, res) => {
 
         // Validate user input
         if (!(email && password)) {
-            res.status(408).json({ message: "All input is required" });
+            res.status(408).json({ message: "All input are required" });
             return
         }
         // check if user already exist
