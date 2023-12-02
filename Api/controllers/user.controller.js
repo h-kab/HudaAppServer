@@ -2,6 +2,8 @@ const { default: mongoose } = require("mongoose");
 const mongodb = require("mongodb");
 const userModule = require("../modules/user.module");
 
+const ins= navigation.navigate('Login');
+const outs= (!navigation.navigate('Login'));
 
 const Login = async (req, res) => {
     try {
@@ -15,20 +17,26 @@ const Login = async (req, res) => {
         console.log(usre);
 
         if (!(email && password)) {
-           return res.status(500).send("missing inputs")
+           return res.status(404).send("incorrect inputs")
+        
         }
+        outs
 
         if (usre) {
             res.status(200).json({ message: " welcom :)" });
+            ins
         }else{
-        res.status(200).json({ message: "incorrect inputs " });
-
-        }
+        res.status(404).json({ message: "incorrect" });
+        outs        }
 
     } catch (e) {
         console.log(e);
     }
 }//login
+
+
+
+
 
 const signUp = async (req, res) => {
     console.log(req);
@@ -43,14 +51,14 @@ const signUp = async (req, res) => {
             res.status(408).json({ message: "All input is required" });
             return
         }
-        // check if user already exis
+        // check if user already exist
         // Validate if user exist in our database
-        const oldUser = await userModule.findOne({ email:mail });s
+        const oldUser = await userModule.findOne({ email:mail });
 
         if (oldUser) {
             return res
                 .status(207)
-                .json({ message: "User Already Exist. Please try Again" });
+                .json({ message: "User Already Exist. Please Try Again" });
         }
         //Encrypt user password
         // Create user in our database
