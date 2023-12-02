@@ -6,7 +6,7 @@ const userModule = require("../modules/user.module");
 const Login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const mail = email.toLowerCase()
+        const mail = email?.toLowerCase()
 
         //userModule.findOne({ email:email }).then((item)=>{
         //     console.log("item",item);
@@ -37,7 +37,7 @@ const Login = async (req, res) => {
 const signUp = async (req, res) => {
     console.log(req);
     const { email, password } = req.body || {};
-    const mail = email.toLowerCase()
+    const mail = email?.toLowerCase()
 
     try {
         // Get user input
