@@ -31,7 +31,7 @@ const Login = async (req, res) => {
 
 
 
-const signUp = async (req, res) => {
+const SignUp = async (req, res) => {
     console.log(req);
     const { email, password } = req.body || {};
     const mail = email?.toLowerCase()
@@ -70,7 +70,7 @@ const signUp = async (req, res) => {
 
 module.exports = {
     Login,
-    signUp,
+    SignUp,
 }
 
 
