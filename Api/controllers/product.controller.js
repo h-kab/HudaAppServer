@@ -28,7 +28,7 @@ const createProduct = (req, res) => {
 
 };
 const getProduct = (req, res) => {
-  
+
 
 
 
@@ -41,6 +41,7 @@ const deleteProducte = (req, res) => {
       res.status(200).json(delRes)
     })
 }
+
 const getAllProducts =(req , res)=>{
   productModule.find({}).then((data)=>{
     if (data) {

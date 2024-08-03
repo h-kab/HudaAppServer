@@ -7,6 +7,7 @@ const productSchema = new Schema({
   name: String,
   price: Number,
   img:String,
+  
   // categories: { type: [String], default: ["general"] },
 });
 
